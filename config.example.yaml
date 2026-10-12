@@ -1,0 +1,55 @@
+app:
+  show_name: Gumu-Gumu
+  language: en
+  log_level: INFO
+paths:
+  scripts: ~/Downloads/output/scripts
+  podcasts: ~/Downloads/output/podcasts
+  working: ~/Downloads/output/working
+  archived_sources: ~/Downloads/output/archived-sources
+  completed_scripts: ~/Downloads/output/completed-scripts
+  published: ~/Music/podcasts/published
+  logs: ~/Downloads/output/logs
+scripter:
+  recursive: true
+  source_disposition: archive
+  require_review: true
+  target_minutes: 10
+  min_minutes: 5
+  max_minutes: 15
+  speech_words_per_minute: 150
+  max_retries: 3
+ollama:
+  base_url: http://127.0.0.1:11434
+  model: gpt-oss:20b
+  num_ctx: 32768
+  temperature: 0.5
+  timeout_seconds: 240
+hosts:
+  ALEX:
+    name: Alex Zulu
+    voice_id: orS9zubkf3wfUBO5E2mK
+  NAOMI:
+    name: Naomi Zed
+    voice_id: g0IlXuNNtW9CjDtDGv70
+audio:
+  tts_mode: turns
+  elevenlabs_model: eleven_multilingual_v2
+  output_format: mp3_44100_128
+  silence_ms_between_turns: 200
+  intro_policy: script_only
+  target_lufs: -16
+  true_peak_db: -1.0
+  mp3_bitrate: 160k
+publishing:
+  api_base_url: ""
+  idp_discovery_url: https://iam.zambeziblue.com/.well-known/openid-configuration
+  oauth_scope: ""
+  auto_publish: false
+  storage_adapter: ""
+  storage_account_url: ""
+  audio_container: ""
+  image_container: ""
+  require_image: true
+  create_response_id_field: id
+  publish_verification_enabled: true

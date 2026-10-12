@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "podcaster"
+version = "0.1.0"
+description = "A resumable Markdown-to-podcast pipeline for Gumu-Gumu"
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic>=2.6,<3",
+  "pydantic-settings>=2.2,<3",
+  "PyYAML>=6.0",
+  "httpx>=0.27,<1",
+  "Jinja2>=3.1",
+  "filelock>=3.13",
+  "mutagen>=1.47",
+  "typer>=0.12,<1",
+  "rich>=13.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "respx>=0.21", "ruff>=0.6", "mypy>=1.10", "coverage>=7"]
+azure = ["azure-storage-blob>=12.20", "azure-identity>=1.17"]
+
+[project.scripts]
+podcaster = "podcaster.cli:main"
+scripter = "podcaster.cli:scripter_main"
+audio-maker = "podcaster.cli:audio_maker_main"
+publisher = "podcaster.cli:publisher_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+podcaster = ["prompts/*.j2"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = ["B008", "BLE001", "PLW1510", "PYI034", "S110", "S112", "TRY004"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
